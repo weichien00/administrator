@@ -234,6 +234,52 @@ class AdminController extends Controller
     }
 
     /**
+     * Batch delete
+     *
+     * @param string $modelName
+     * @param int    $id
+     *
+     * @return JSON
+     */
+    public function batchVerify($modelName)
+    {
+        $config        = app('itemconfig');
+        $actionFactory = app('admin_action_factory');
+        $baseModel     = $config->getDataModel();
+        $errorResponse = array(
+            'success' => false,
+            'error'   => 'There was an error perform batch deletion. Please reload the page and try again.',
+        );
+
+        //if don't have permission, send back request
+        $permissions = $actionFactory->getActionPermissions();
+        if (!$permissions['delete']) {
+            return response()->json($errorResponse);
+        }
+
+        //request ids: 1,3,5
+        $ids = explode(',', $this->request->ids);
+        // //delete the model
+        // if ($baseModel::whereIn('id', $ids)->delete()) {
+        //     return response()->json(array(
+        //         'success' => true,
+        //     ));
+        // } else {
+        //     return response()->json($errorResponse);
+        // }
+        //delete the model
+        logger("asdasdadasd");
+        logger($ids);
+        if ($baseModel::whereIn('id', $ids)->update(['verified' => true])) {
+            return response()->json(array(
+                'success' => true,
+            ));
+        } else {
+            return response()->json($errorResponse);
+        }
+    }
+
+    /**
      * POST method for handling custom model actions.
      *
      * @param string $modelName

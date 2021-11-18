@@ -147,6 +147,12 @@ Route::group(array('domain' => config('administrator.domain'), 'prefix' => confi
             'as'   => 'admin_batch_delete',
             'uses' => 'Frozennode\Administrator\AdminController@batchDelete',
         ));
+
+        //Batch Verify Item
+        Route::post('{model}/batch_verify', array(
+            'as'   => 'admin_batch_verify',
+            'uses' => 'Frozennode\Administrator\AdminController@batchVerify',
+        ));
     });
 
 });
