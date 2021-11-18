@@ -47,6 +47,8 @@ return array(
 
     'select_all'   => '全选',
     'delete_all'   => '批量删除',
+    'verify_all'   => '批量审核',
+    
 
     'valid_columns'            => "在每个 model 的配置中你必须提供一个有效的 'columns' 数组",
     'valid_title'              => '在每个 model 的配置中你必须要提供有效的标题（ title ）和单数名字（ single ）参数',
