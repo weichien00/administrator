@@ -47,6 +47,12 @@
 	            <i class="fa fa-trash" aria-hidden="true"></i> <?php echo trans('administrator::administrator.delete_all') ?>
 	        </a>
 	        <!-- /ko -->
+
+			<!-- ko if: $root.actionPermissions['verify'] == true  -->
+			<a type="button" id="verify-all" class="btn btn-danger btn-sm disabled" data-bind="click: verifyItems">
+	            <i class="fa fa-check-circle" aria-hidden="true"></i> <?php echo trans('administrator::administrator.verify_all') ?>
+	        </a>
+	        <!-- /ko -->
 	        
 			Total: <span data-bind="text: pagination.total()"></span>&nbsp;&nbsp;
 			<input type="button" class="btn btn-outline btn-primary btn-xs" value="<?php echo trans('administrator::administrator.previous') ?>"
