@@ -43,13 +43,13 @@
 		<div class="paginator">
 
 			<!-- ko if: $root.actionPermissions['delete'] !== false  -->
-			<a type="button" id="delete-all" class="btn btn-danger btn-sm disabled" data-bind="click: deleteItems">
+			<a type="button" id="delete-all" class="btn btn-danger btn-sm" data-bind="click: deleteItems">
 	            <i class="fa fa-trash" aria-hidden="true"></i> <?php echo trans('administrator::administrator.delete_all') ?>
 	        </a>
 	        <!-- /ko -->
 
 			<!-- ko if: $root.actionPermissions['verify'] == true  -->
-			<a type="button" id="verify-all" class="btn btn-danger btn-sm disabled" data-bind="click: verifyItems">
+			<a type="button" id="verify-all" class="btn btn-danger btn-sm" data-bind="click: verifyItems">
 	            <i class="fa fa-check-circle" aria-hidden="true"></i> <?php echo trans('administrator::administrator.verify_all') ?>
 	        </a>
 	        <!-- /ko -->
