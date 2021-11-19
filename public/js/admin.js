@@ -467,7 +467,8 @@
 									History.pushState({modelName: self.modelName()}, document.title, route + self.modelName());
 									$('#sidebar').fadeIn();
 									$('#select-all').prop('checked',false);
-									$('#delete-all').addClass('disabled');
+									// $('#delete-all').addClass('disabled');
+									//  $('#verify-all').addClass('disabled');
 								}, 500);
 							}
 							else
@@ -544,8 +545,8 @@
 									 History.pushState({modelName: self.modelName()}, document.title, route + self.modelName());
 									 $('#sidebar').fadeIn();
 									 $('#select-all').prop('checked',false);
-									 $('#delete-all').addClass('disabled');
-									 $('#verify-all').addClass('disabled');
+									//  $('#delete-all').addClass('disabled');
+									//  $('#verify-all').addClass('disabled');
 								 }, 500);
 							 }
 							 else
