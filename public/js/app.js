@@ -1309,7 +1309,7 @@
 							 if (response.success)
 							 {
 								 swal({
-									 title: adminData.languages['deleted'],
+									 title: adminData.languages['verified'],
 									 text: "",
 									 type: "success",
 									 timer: 1000,
@@ -1332,7 +1332,7 @@
 								 swal(response.error, "", "error");
 						 },
 						 error: function(response) {
-							 swal(adminData.languages['delete_failed'], "", "error");
+							 swal(adminData.languages['verify_failed'], "", "error");
 						 }
 					 });
 				 });

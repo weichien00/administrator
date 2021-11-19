@@ -481,6 +481,84 @@
 			},
 
 			/**
+			 * Verify selected items
+			 */
+			 verifyItems: function()
+			 {
+				 var self = this;
+				 var selected = [];
+ 
+				 $('.select-checkbox').each(function(i, el) {
+					 if ($(el).is(':checked')) {
+						 selected.push($(el).val());
+					 }
+				 });
+ 
+				 if (!selected.length) {
+					 swal('', adminData.languages['select_options'], "warning");
+					 return;
+				 }
+ 
+				 swal({
+					 title: '',
+					 text: adminData.languages['verify_items'],
+					 type: "warning",
+					 showCancelButton: true,
+					 confirmButtonColor: "#DD6B55",
+					 cancelButtonText: adminData.languages['cancel'],
+					 confirmButtonText: adminData.languages['verify'],
+					 showLoaderOnConfirm: true,
+					 closeOnConfirm: false
+				 }, function() {
+					 var mykey = selected.join(',');
+ 
+					 self.freezeForm(true);
+ 
+					 $.ajax({
+						 url: base_url + self.modelName() + '/batch_verify',
+						 data: {_token: csrf, ids: mykey},
+						 dataType: 'json',
+						 type: 'POST',
+						 complete: function()
+						 {
+							 self.freezeForm(false);
+							 window.admin.resizePage();
+						 },
+						 success: function(response)
+						 {
+							 if (response.success)
+							 {
+								 swal({
+									title: adminData.languages['verified'],
+									 text: "",
+									 type: "success",
+									 timer: 1000,
+									 showConfirmButton: false
+								 });
+ 
+								 self.updateRows();
+								 self.updateSelfRelationships();
+ 
+								 setTimeout(function()
+								 {
+									 History.pushState({modelName: self.modelName()}, document.title, route + self.modelName());
+									 $('#sidebar').fadeIn();
+									 $('#select-all').prop('checked',false);
+									 $('#delete-all').addClass('disabled');
+									 $('#verify-all').addClass('disabled');
+								 }, 500);
+							 }
+							 else
+								 swal(response.error, "", "error");
+						 },
+						 error: function(response) {
+							swal(adminData.languages['verify_failed'], "", "error");
+						 }
+					 });
+				 });
+			 },
+
+			/**
 			 * Callback for clicking an item
 			 */
 			clickItem: function(id)
